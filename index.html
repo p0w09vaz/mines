@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#000000">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Minesweeper</title>
+    <style>
+      * {
+        background-color: rgba(0, 0, 0, 1);
+        color: rgba(211, 211, 211, 1);
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      #viewport {
+        width: 100%;
+        height: 100%;
+      }
+
+      #panel {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        border-top: rgba(153, 153, 153, 1) solid 1px;
+        border-left: rgba(153, 153, 153, 1) solid 1px;
+        border-right: rgba(153, 153, 153, 1) solid 1px;
+        padding: 10px;
+      }
+    </style>
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <div id="viewport"></div>
+    <div id="panel">
+      health: 100HP
+      uncovered: 0
+      difficulty: normal
+      <button id="restart">restart</button>
+    </div>
+  </body>
+</html>
