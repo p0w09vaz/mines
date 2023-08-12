@@ -5,7 +5,9 @@
     <meta name="theme-color" content="#000000">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Minesweeper</title>
+    <title>Mines</title>
+    <!--suppress LongLine -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚩</text></svg>">
     <style>
       * {
         background-color: rgba(0, 0, 0, 1);
@@ -35,10 +37,16 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        border-top: rgba(153, 153, 153, 1) solid 1px;
-        border-left: rgba(153, 153, 153, 1) solid 1px;
-        border-right: rgba(153, 153, 153, 1) solid 1px;
+        border-top: #999999 solid 1px;
+        border-left: #999999 solid 1px;
+        border-right: #999999 solid 1px;
         padding: 10px;
+      }
+
+      #restart {
+        padding: 3px;
+        border-right: #6b6b6b solid 1px;
+        border-bottom: #6b6b6b solid 1px;
       }
     </style>
     <script defer src="main.js"></script>
@@ -46,9 +54,9 @@
   <body>
     <div id="viewport"></div>
     <div id="panel">
-      health: 100HP
-      uncovered: 0
-      difficulty: normal
+      Health: <span id="heath"></span>%
+      Scores: <span id="scores"></span>
+      Difficulty: <span id="difficulty"></span>
       <button id="restart">restart</button>
     </div>
   </body>

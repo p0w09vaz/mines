@@ -31,13 +31,15 @@
         viewport;
         difficulty;
         health;
+        scores;
         cells;
         clickState;
 
         constructor() {
             this.viewport = new Viewport();
             this.difficulty = difficultyNormal;
-            this.health = 100;
+            this.setHealth(100);
+            this.setScores(0);
             this.cells = {};
             this.clickState = {
                 isClick: false,
@@ -147,6 +149,16 @@
             });
         }
 
+        setHealth(health) {
+            this.health = health;
+            document.getElementById("heath").innerText = health < 0 ? "0" : Math.ceil(health).toString();
+        }
+
+        setScores(scores) {
+            this.scores = scores;
+            document.getElementById("scores").innerText = scores;
+        }
+
         resetState() {
             window.localStorage.removeItem("game_state_" + this.difficulty);
 
@@ -155,7 +167,8 @@
             });
 
             this.cells = {};
-            this.health = 100;
+            this.setHealth(100);
+            this.setScores(0);
             this.viewport.fieldX = 0;
             this.viewport.fieldY = 0;
             this.viewport.chunks = {};
@@ -169,7 +182,8 @@
 
             if (state) {
                 this.cells = state.cells;
-                this.health = state.health;
+                this.setHealth(state.health);
+                this.setScores(state.scores);
 
                 Object.keys(this.cells).forEach((cellId) => {
                     const cell = this.cells[cellId];
@@ -184,6 +198,7 @@
             const state = {
                 cells: this.cells,
                 health: this.health,
+                scores: this.scores,
                 fieldX: this.viewport.fieldX,
                 fieldY: this.viewport.fieldY,
             };
@@ -192,6 +207,10 @@
         }
 
         handleCellClick(location, isCascade) {
+            if (this.health <= 0) {
+                return;
+            }
+
             const cellId = this.getCellIdFromLocation(location);
 
             this.cells[cellId] = this.getOrCreateCell(cellId);
@@ -199,10 +218,10 @@
             if (this.cells[cellId].state === cellStateUnknown) {
                 if (this.cells[cellId].mined) {
                     this.cells[cellId].state = cellStateExplosion;
-                    // Cell is covered and mined for testing purposes. Boom!
-                    this.health -= 100;
-                    // Check if health value is negative
+                    this.setHealth(this.health - 100);
                 } else {
+                    this.setHealth(this.health + 0.01);
+                    this.setScores(this.scores + 1);
                     // Count near mined cells
                     let nearMinesCount = this.getNearMinesCount(location);
 
@@ -409,6 +428,10 @@
         }
 
         handleCellMark(location) {
+            if (this.health <= 0) {
+                return;
+            }
+
             const cellId = this.getCellIdFromLocation(location);
 
             this.cells[cellId] = this.getOrCreateCell(cellId);
