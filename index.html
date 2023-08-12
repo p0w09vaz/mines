@@ -43,6 +43,10 @@
         padding: 10px;
       }
 
+      .panel-item {
+        margin: 0 2px;
+      }
+
       #restart {
         padding: 3px;
         border-right: #6b6b6b solid 1px;
@@ -54,10 +58,10 @@
   <body>
     <div id="viewport"></div>
     <div id="panel">
-      Health: <span id="heath"></span>%
-      Scores: <span id="scores"></span>
-      Difficulty: <span id="difficulty"></span>
-      <button id="restart">restart</button>
+      <span class="panel-item">Health: <span id="heath"></span>%</span>
+      <span class="panel-item">Scores: <span id="scores"></span></span>
+      <span class="panel-item">Difficulty: <span id="difficulty">normal</span></span>
+      <span class="panel-item"><button id="restart">restart</button></span>
     </div>
   </body>
 </html>
