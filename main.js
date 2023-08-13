@@ -174,6 +174,7 @@
             this.viewport.chunks = {};
 
             this.viewport.updateChunks();
+            this.handleCellClick({x: 0, y: 0});
         }
 
         loadState() {
