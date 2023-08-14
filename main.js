@@ -24,7 +24,7 @@
 
     const difficultyNormal = "normal";
 
-    const minedPercent = 0.27;
+    const minedPercent = 0.26;
     const firstSafeCells = 27;
 
     class Game {
@@ -175,6 +175,7 @@
 
             this.viewport.updateChunks();
             this.handleCellClick({x: 0, y: 0});
+            this.saveState();
         }
 
         loadState() {
