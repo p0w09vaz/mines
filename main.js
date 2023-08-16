@@ -24,8 +24,9 @@
 
     const difficultyNormal = "normal";
 
-    const minedPercent = 0.26;
+    const minedPercent = 0.268;
     const firstSafeCells = 27;
+    const healthGainPerCell = 0.035;
 
     class Game {
         viewport;
@@ -222,7 +223,7 @@
                     this.cells[cellId].state = cellStateExplosion;
                     this.setHealth(this.health - 100);
                 } else {
-                    this.setHealth(this.health + 0.01);
+                    this.setHealth(this.health + healthGainPerCell);
                     this.setScores(this.scores + 1);
                     // Count near mined cells
                     let nearMinesCount = this.getNearMinesCount(location);
